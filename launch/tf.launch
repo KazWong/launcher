@@ -1,0 +1,10 @@
+<launch>
+  <!-- Robot TF -->
+  <include file="$(find boot)/launch/tf.launch">
+    <arg name="sim" value="false"/>
+    <arg name="joint_pub" value="false"/>
+  </include>
+
+  <!--Environment TF -->
+  <node pkg="environment" name="static_broadcaster" type="static_broadcaster"></node>
+</launch>

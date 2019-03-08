@@ -1,0 +1,10 @@
+EBandPlannerROS:
+  eband_internal_force_gain: 0.014
+  eband_external_force_x_gain: &external_force 0.01
+  eband_external_force_y_gain: 0.006
+  eband_external_force_z_gain: 0.006
+  goal_deaccl_dist: 0.9
+
+# Old version eband parameters
+  eband_external_force_gain: *external_force
+

@@ -1,0 +1,12 @@
+<launch>
+
+<!--Environment TF -->
+  <!-- <node pkg="environment" name="ar_tf_broadcaster_ht" type="ar_tf_broadcaster_ht_n"></node>
+  <node pkg="environment" name="ar_tf_broadcaster_mmi" type="ar_tf_broadcaster_mmi_n"></node>
+  <node pkg="environment name="mmi_tf_broadcaster" type="mmi_tf_broadcaster_n"></node>
+  <node pkg="environment" name="ht_tf_broadcaster" type="ht_tf_broadcaster_n"></node>-->
+
+  <rosparam file="$(find environment)/param/ht_mmi_params_4MMI.yaml" command="load"/> 
+  <!-- <rosparam file="$(find environment)/param/ht_mmi_outside_office.yaml" command="load"/> -->
+
+</launch>

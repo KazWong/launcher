@@ -1,0 +1,6 @@
+<launch>
+  <arg name="sim" default="false"/>
+  
+  <!--Environment TF -->
+  <include file="$(find generate_tf)/launch/envirTF.launch"/>
+</launch>

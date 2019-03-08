@@ -1,0 +1,41 @@
+<launch>
+  <!-- Map -->
+  <arg name="map_file" default="$(find environment)/maps/8_14_lab_forbidden.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/8_14_lab.yaml"/>
+
+  <include file="$(find boot)/launch/boot.launch">
+    <arg name="sim" value="false"/>
+    <arg name="tf" value="true"/>
+    <arg name="ur5" value="false"/>
+    <arg name="navigation" value="true"/>
+    <arg name="agv" value="true"/>
+    <arg name="lidar" value="false"/>
+    
+    <arg name="map_file" value="$(arg map_file)"/>
+    <arg name="amcl_map_file" value="$(arg amcl_map_file)"/>
+    <!-- <arg name="ur_ip" value="192.168.3.2"/> -->
+    <!-- <arg name="sick_ip" value="192.168.2.2"/> -->
+    <arg name="keyboard" value="false"/>
+    <arg name="joystick" value="true"/>
+    <arg name="parking" default="true"/>
+    
+    <arg name="duration" value="5m"/>
+    <arg name="split" value="100"/>
+  </include>
+
+  <!-- Power management --> <!--Plan to auto run when startup-->
+  <include file="$(find launcher)/launch/power.launch">
+  </include>
+  
+  <!-- Camera -->
+  <include file="$(find launcher)/launch/cam_charging.launch"/>
+  <!-- <include file="$(find launcher)/launch/cam_left.launch"/>
+  <include file="$(find launcher)/launch/cam_right.launch"/>  
+  <include file="$(find launcher)/launch/cam_hand.launch"/> -->
+  
+  <node pkg="wandering" name="wandering" type="wandering" />
+  
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+  <include file="$(find launcher)/launch/envirTF.launch"/>
+  <include file="$(find launcher)/launch/load_param.launch"/>
+</launch>

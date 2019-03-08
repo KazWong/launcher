@@ -1,0 +1,2 @@
+global_costmap:
+  footprint_padding: 0.04

@@ -1,0 +1,5 @@
+<launch>
+  <include file="$(find boot)/launch/power.launch"/>
+
+  <include file="$(find launcher)/launch/load_param.launch"/>
+</launch>

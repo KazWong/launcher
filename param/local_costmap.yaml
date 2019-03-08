@@ -1,0 +1,2 @@
+local_costmap:
+  footprint_padding: 0.15
