@@ -1,0 +1,19 @@
+<launch>
+  <include file="$(find boot)/launch/buildmap.launch">
+    <arg name="sim" value="false"/>
+    <arg name="sick_ip" value="192.168.2.2" />
+    <arg name="sweep_port" value="/dev/ttyUSB0"/>
+    <arg name="sweep" value="true" />
+    <arg name="keyboard" value="false"/>
+    <arg name="joystick" value="false"/>
+    <arg name="joy_dev" default="/dev/input/js0"/>
+    
+    <arg name="lidar_x" value="0.008"/>
+    <arg name="lidar_y" value="0.01"/>
+    <arg name="lidar_z" value="0.395"/>
+  </include>
+  
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+  
+  <include file="$(find launcher)/launch/load_param.launch"/>
+</launch>

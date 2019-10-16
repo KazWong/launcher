@@ -1,0 +1,26 @@
+<launch>
+  <!-- World -->
+  <arg name="world_name" value="worlds/empty.world"/>
+  <!-- <arg name="world_name" value="$(find environment)/worlds/sae_mmi_factory.world"/> -->
+  <!-- <arg name="world_name" value="$(find environment)/worlds/ca_plant_0829.world"/> -->
+  <!-- <arg name="world_name" value="$(find environment)/worlds/10mmi_2d.world"/> -->
+  <!-- <arg name="world_name" value="$(find environment)/worlds/teeth_1.75x2.world"/> -->
+  <!-- <arg name="world_name" value="$(find environment)/worlds/navi_tester.world"/> -->
+
+  <!-- Gazebo -->
+  <include file="$(find launcher)/launch/gazebo.launch">
+    <arg name="gui" value="true"/>
+    <arg name="world_name" value="$(arg world_name)"/>
+  </include>
+
+  <!-- Environment TF -->
+  <!-- <node pkg="environment" name="static_broadcaster" type="static_broadcaster"></node> -->
+
+  <!-- <include file="$(find launcher)/launch/tf_agv.launch">
+    <arg name="sim" value="true"/>
+    <arg name="ns" value=""/>
+    <arg name="joint_pub" value="false"/>
+    <arg name="shift_x" default="-3.0"/>
+    <arg name="shift_y" default="-11.75"/>
+  </include> -->
+</launch>

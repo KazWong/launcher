@@ -1,0 +1,43 @@
+ar_parked_HT: 
+  Parent: ar_marker_0
+  Coordinate: [ -0.065, -0.498, 1.114, 2.101, -1.434, 2.642 ]
+  
+ar_unparked_HT: 
+  Parent: ar_parked_HT
+  Coordinate: [ 0.4, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+
+ht_takepic: 
+  Parent: ar_marker_0
+  Coordinate: [ 0.063, -0.223, 0.532, -1.501, 0.154, -3.095 ]
+  
+ar_parked_CS: 
+  Parent: ar_marker_0
+  Coordinate: [ 0.127, -0.493, 1.235, -1.635, -0.103, 0.038 ]
+
+ar_unparked_CS: 
+  Parent: ar_parked_CS
+  Coordinate: [ 0.0, -0.4, 0.0, 0.0, 0.0, 0.0 ]
+
+pic_cnc01: 
+  Parent: ar_marker_4
+  Coordinate: [ 0.535, -0.230, -0.372, 0.080, -1.467, 1.546 ]
+  
+ar_parked_CNC: 
+  Parent: ar_marker_4
+  Coordinate: [ 0.409, -0.492, 0.462, -2.525, -1.488, 0.980 ]
+
+ar_unparked_CNC: 
+  Parent: ar_parked_CNC
+  Coordinate: [ 0.2, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+  
+ar_parked_N_CNC: 
+  Parent: ar_parked_CNC
+  Coordinate: [ 0.0, 0.0, 0.0, 0.0, 0.0, 3.14159265 ]
+
+ar_unparked_N_CNC: 
+  Parent: ar_parked_N_CNC
+  Coordinate: [ 0.4, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+  
+cal_position: 
+  Parent: ar_marker_105
+  Coordinate: [ -0.012, -0.028, 0.399, -3.056, -0.048, 0.031 ]

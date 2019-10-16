@@ -1,0 +1,33 @@
+darling_in_franxx:
+  parent_frame: map
+  transform: [0.5484468409422164, -0.2590011332616893, 0, 0, -0, -1.596225011430352]
+darling_in_franxx_opp:
+  transform: [4.624138108888217, -0.07682698869715543, 0, 0, -0, 1.561885970151379]
+  parent_frame: map
+darling_pre_charging:
+  transform: [4.624135863946171, -0.07682624179289899, 0, 0, -0, 1.561887549920859]
+  parent_frame: map
+darling_in_clock:
+  parent_frame: map
+  transform: [3.959243681280947, 11.44139129196365, 0, 0, -0, -3.119174908496601]
+darling_in_fire_wheel:
+  transform: [-0.04988851463708177, 11.21649396211485, 0, 0, -0, -3.124950120290881]
+  parent_frame: map
+darling_at_home:
+  parent_frame: map
+  transform: [1.095530990276183, -0.2001860159068811, 0, 0, -0, -1.547661746903523]
+darling_in_door:
+  transform: [0.500317308438934, -2.82481183508221, 0, -0, -0, 0.002562081931606405]
+  parent_frame: map
+darling_out_door:
+  parent_frame: map
+  transform: [-1.661591238078671, -2.841556963692175, 0, 0, 0, -3.141261549221459]
+darling_in_flipflip:
+  transform: [-2.818341640946036, -2.591096751225209, 0, 0, 0, -1.596951867175682]
+  parent_frame: map
+darling_in_flip:
+  transform: [-2.752730353350493, -0.1079262570536361, 0, -0, -0, 1.47483645882726]
+  parent_frame: map
+darling_to_end:
+  parent_frame: map
+  transform: [32.99236038314349, 14.98247268892017, 0, 0, -0, 3.13869897871175]

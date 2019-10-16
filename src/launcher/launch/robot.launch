@@ -1,0 +1,35 @@
+<launch>
+  <!-- Robot Diamension -->
+  <!-- Map -->
+  <arg name="map_file" default="$(find environment)/maps/8_14_lab_forbidden.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/8_14_lab.yaml"/>
+  
+  <!-- Robot Parameters-->
+  <!-- robot config -->
+  <rosparam file="$(find launcher)/param/nav_params.yaml" ns="move_base" />
+  <!-- AMCL init pose -->
+  <rosparam file="$(find launcher)/param/amcl_init.yaml" ns="amcl"/>
+
+  <include file="$(find ghost)/launch/boot.launch">
+    <arg name="sim" value="false"/>
+    <arg name="tf" value="true"/>
+    <arg name="navigation" value="true"/>
+    <arg name="agv" value="true"/>
+    
+    <arg name="map_file" value="$(arg map_file)"/>
+    <arg name="amcl_map_file" value="$(arg amcl_map_file)"/>
+    <arg name="keyboard" value="false"/>
+    <arg name="joystick" value="true"/>
+    <arg name="parking" default="true"/>
+    
+    <arg name="duration" value="5m"/>
+    <arg name="split" value="100"/>
+  </include>
+  
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+  <!-- <include file="$(find launcher)/launch/envirTF.launch"/> -->
+  <!-- Environment TF -->
+  <!-- <node pkg="environment" name="static_broadcaster" type="static_broadcaster"/> -->
+  <!-- Drive -->
+  <!-- <node pkg="drive" name="drive" type="drive"/> -->
+</launch>

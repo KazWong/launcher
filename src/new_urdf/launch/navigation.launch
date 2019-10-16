@@ -1,0 +1,27 @@
+<launch> 
+  <!-- Map -->
+  <arg name="map_file" default="$(find environment)/maps/hga.yaml"/>
+
+  <!-- boot -->
+  <include file="$(find boot)/launch/boot.launch">
+    <arg name="sim" value="false"/>
+    <arg name="tf" value="true"/>
+    <arg name="navigation" value="true"/>
+    <arg name="agv" value="true"/>
+    <arg name="lidar" value="false"/>
+    
+    <arg name="map_file" value="$(arg map_file)"/>
+    <!-- <arg name="sick_ip" value="192.168.2.2"/> -->
+    <arg name="keyboard" value="false"/>
+    <arg name="joystick" value="false"/>
+    <arg name="driver" value="accelnet"/>
+    <arg name="parking" default="true"/>
+    
+    <arg name="duration" value="5m"/>
+    <arg name="split" value="100"/>
+  </include>
+  
+  <include file="$(find rplidar_ros)/launch/rplidar.launch"/>
+  <include file="$(find launcher)/launch/envirTF.launch"/>
+  <include file="$(find launcher)/launch/load_param.launch"/>
+</launch>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="name" default=""/>
+  <arg name="shift_x" default="0.0"/>
+  <arg name="shift_y" default="0.0"/>
+  <arg name="shift_z" default="0.0"/>
+
+  <!-- Parsing xacro and setting robot_description parameter -->
+  <param name="robot_description" 
+         command="$(find xacro)/xacro --inorder '$(find launcher)/urdf/$(arg name).urdf.xacro'" />
+  
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false"
+        output="screen" args="-urdf -model $(arg name) -param robot_description 
+        -x $(arg shift_x) -y $(arg shift_y) -z $(arg shift_z) "/> 
+</launch>

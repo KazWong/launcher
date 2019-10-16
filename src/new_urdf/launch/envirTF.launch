@@ -1,0 +1,6 @@
+<launch>
+  <arg name="sim" default="false"/>
+  
+  <!--Environment TF -->
+  <node pkg="environment" name="static_broadcaster" type="static_broadcaster"></node>
+</launch>

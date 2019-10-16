@@ -1,0 +1,110 @@
+darling_at_home:
+  transform:
+    - 1.0775
+    - -0.26764
+    - 0.0
+    - 0.0
+    - 0.0
+    - -0.7078
+    - 0.7061
+  parent_frame: map	
+darling_in_franxx:
+  transform:
+    - 0.607
+    - -0.2882
+    - 0.0
+    - 0.0
+    - 0.0
+    - -0.7052
+    - 0.7088
+  parent_frame: map	
+darling_in_door:
+  transform:
+    - 0.4156
+    - -2.8558
+    - 0.0
+    - 0.0
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_in_franxx_opp:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_in_alfred_room:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_in_clock:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_in_fire_wheel:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_out_door:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_in_flip:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_in_flipflip:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_to_end:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	
+darling_pre_charging:
+  transform:
+    - 1.006
+    - 0.214
+    - 0
+    - 0.2199999999999999
+    - -0.5399999999999999
+    - -1.53
+  parent_frame: map	

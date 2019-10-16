@@ -1,0 +1,12 @@
+<launch>
+  <include file="$(find boot)/launch/buildmap.launch">
+    <arg name="sim" value="true"/>
+    <arg name="tf" value="false"/>
+    <arg name="keyboard" value="false"/>
+    <arg name="joystick" value="false"/>
+    
+    <arg name="lidar_x" value="0.13"/>
+    <arg name="lidar_y" value="-0.0015"/>
+    <arg name="lidar_z" value="0.900"/>
+  </include>
+</launch>

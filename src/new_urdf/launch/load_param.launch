@@ -1,0 +1,4 @@
+<launch>
+  <!-- Hardware config -->
+  <rosparam file="$(find launcher)/param/hardware.yaml" ns="hardware"/>
+</launch>
