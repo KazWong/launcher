@@ -1,0 +1,5 @@
+<launch>
+	<node name="cmd_vel2can" pkg="drive" type="cmd_vel2can.py" />
+	<node name="can2wheels" pkg="drive" type="can2wheels.py" />
+	<node name="wheels2odom" pkg="drive" type="wheels2odom.py" />
+</launch>
