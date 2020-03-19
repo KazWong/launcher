@@ -6,4 +6,4 @@
 	url = ssh://whwong@192.168.13.82:29418/~whwong/ros_navigation/joystick_drivers.git
 [submodule "src/drive"]
 	path = src/drive
-	url = ssh://whwong192.168.13.82:29418/~whwong/ros_navigation_client/drive.git
+	url = ssh://whwong@192.168.13.82:29418/~whwong/ros_navigation_client/drive.git
