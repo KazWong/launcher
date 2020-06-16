@@ -1,8 +1,8 @@
 <launch>
   <!-- Robot Diamension -->
   <!-- Map -->
-  <arg name="map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
-  <arg name="amcl_map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
+  <arg name="map_file" default="$(find environment)/maps/903_2.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/903_2.yaml"/>
   
   <!-- Robot Parameters-->
   <!-- robot config -->
@@ -10,7 +10,7 @@
   <!-- AMCL init pose -->
   <rosparam file="$(find launcher)/param/amcl_init.yaml" ns="amcl"/>
 
-  <include file="$(find ghost)/launch/boot.launch">
+  <include file="$(find ghost)/launch/boot_ml.launch">
     <arg name="sim" value="false"/>
     <arg name="tf" value="true"/>
     <arg name="navigation" value="true"/>
@@ -37,4 +37,9 @@
   	args="0 0 0 0 0 0 agv_lidar velodyne 10" />
   <!-- joystick -->
   <node pkg="drive" type="joy2cmd_vel.py" name="joy2cmd_vel"/>
+
+  <!-- data transformer -->
+  <node pkg="data_transformer" type="data_transformer" name="data_transformer">
+  </node>
+
 </launch>
