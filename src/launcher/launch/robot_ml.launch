@@ -1,12 +1,12 @@
 <launch>
   <!-- Robot Diamension -->
   <!-- Map -->
-  <arg name="map_file" default="$(find environment)/maps/903_2.yaml"/>
-  <arg name="amcl_map_file" default="$(find environment)/maps/903_2.yaml"/>
+  <arg name="map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
   
   <!-- Robot Parameters-->
   <!-- robot config -->
-  <rosparam file="$(find launcher)/param/nav_params.yaml" ns="move_base" />
+  <rosparam file="$(find launcher)/param/nav_params_ml.yaml" ns="move_base" />
   <!-- AMCL init pose -->
   <rosparam file="$(find launcher)/param/amcl_init.yaml" ns="amcl"/>
 

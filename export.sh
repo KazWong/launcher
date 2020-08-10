@@ -1,4 +1,9 @@
 #!/bin/bash
 
-export ROS_MASTER_URI=http://192.168.12.98:11311/
-export ROS_IP=192.168.12.98
+ip=(`ifconfig | grep 'wlan0\|wlo1' -A2`)
+if [ -n "$1" ]; then
+	export ROS_MASTER_URI=http://"$1":11311/
+else
+	export ROS_MASTER_URI=http://${ip[5]}:11311/
+fi
+export ROS_IP=${ip[5]}
