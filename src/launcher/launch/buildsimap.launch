@@ -4,7 +4,7 @@
   <arg name="static_tf_lidar_z" default="0.0"/>
   
   <!-- Parameters -->
-  <rosparam file="$(find launcher)/param/buildmap_tf.yaml" />
+  <!-- <rosparam file="$(find launcher)/param/buildmap_tf.yaml" /> -->
     
   <include file="$(find ghost)/launch/buildmap.launch">
     <arg name="sim" value="true"/>

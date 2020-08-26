@@ -1,11 +1,13 @@
 <launch>
-  <arg name="map_file" default="$(find environment)/maps/navi_tester.yaml"/>
-  <arg name="amcl_map_file" default="$(find environment)/maps/navi_tester.yaml"/>
+  <arg name="map_file" default="$(find environment)/maps/T_1m.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/T_1m.yaml"/>
   
-  <arg name="world_name" default="$(find environment)/worlds/navi_tester.world"/>
+  <arg name="world_name" default="$(find environment)/worlds/903.world"/>
   <arg name="shift_x" default="-3.0"/>
-  <arg name="shift_y" default="-11.75"/>
+  <arg name="shift_y" default="0.0"/>
+  <arg name="shift_z" default="0.0"/>
   <arg name="gui" default="false"/>
+  <arg name="helloworld_tf" value="false"/>
 
   <!-- Environment TF -->
   <!-- <node pkg="environment" name="static_broadcaster" type="static_broadcaster"></node> -->
@@ -16,13 +18,14 @@
   <!-- AMCL init pose -->
   <rosparam file="$(find launcher)/param/amcl_init.yaml" ns="amcl"/>
   
-  <!-- Gazebo-->
+  <!-- Gazebo
   <include file="$(find ghost)/launch/helloworld.launch">
     <arg name="world_name" value="$(arg world_name)"/>
     <arg name="shift_x" value="$(arg shift_x)"/>
     <arg name="shift_y" value="$(arg shift_y)"/>
     <arg name="gui" value="$(arg gui)"/>
-  </include>>
+    <arg name="tf" value="$(arg helloworld_tf)"/>
+  </include> -->
 
   <!-- Robot -->
   <include file="$(find ghost)/launch/boot.launch">
@@ -36,7 +39,10 @@
     <arg name="keyboard" value="false"/>
     <arg name="joystick" value="false"/>
     <arg name="joint_pub" value="false"/>
-  </include>
+    <arg name="shift_x" value="$(arg shift_x)"/>
+    <arg name="shift_y" value="$(arg shift_y)"/>
+    <arg name="shift_z" value="$(arg shift_z)"/>
+    </include>
   
   <arg name="debug" default="false" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
@@ -49,4 +55,7 @@
   <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
 	args="$(arg command_args)" output="screen">
   </node>
+  
+  <!-- joystick -->
+  <node pkg="drive" type="joy2cmd_vel.py" name="joy2cmd_vel"/>
 </launch>
