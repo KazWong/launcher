@@ -1,14 +1,22 @@
 <launch>
   <!-- Robot Diamension -->
   <!-- Map -->
-  <arg name="map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
-  <arg name="amcl_map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
+ 
+  <!-- 
+  <arg name="map_file" default="$(find environment)/maps/Outdoor_map_restrict.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/Outdoor_map.yaml"/>
+  -->
+    
+  <arg name="map_file" default="$(find environment)/maps/2020_Aug_17_test_map_2.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/2020_Aug_17_test_map_2.yaml"/>
   
   <!-- Robot Parameters-->
   <!-- robot config -->
   <rosparam file="$(find launcher)/param/nav_params.yaml" ns="move_base" />
   <!-- AMCL init pose -->
   <rosparam file="$(find launcher)/param/amcl_init.yaml" ns="amcl"/>
+  <!-- JoyStick -->
+  <rosparam file="$(find launcher)/param/joy.yaml" ns="joy_node"/>
 
   <include file="$(find ghost)/launch/boot.launch">
     <arg name="sim" value="false"/>

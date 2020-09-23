@@ -1,8 +1,8 @@
 <launch>
   <!-- Robot Diamension -->
   <!-- Map -->
-  <arg name="map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
-  <arg name="amcl_map_file" default="$(find environment)/maps/903_08June_bigbig2.yaml"/>
+  <arg name="map_file" default="$(find environment)/maps/2020_Aug_17_test_map_2.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/2020_Aug_17_test_map_2.yaml"/>
   
   <!-- Robot Parameters-->
   <!-- robot config -->
@@ -39,7 +39,7 @@
   <node pkg="drive" type="joy2cmd_vel.py" name="joy2cmd_vel"/>
 
   <!-- data transformer -->
-  <node pkg="data_transformer" type="data_transformer" name="data_transformer">
+  <node pkg="data_transformer" type="data_transformer2" name="data_transformer2">
   </node>
 
 </launch>

@@ -10,6 +10,7 @@
     <arg name="sim" value="false"/>
     <arg name="keyboard" value="false"/>
     <arg name="joystick" value="false"/>
+    <arg name="tf" value="true"/>
     <!-- <arg name="joy_dev" default="/dev/input/js0"/> -->
     
     <arg name="lidar_x" value="$(arg static_tf_lidar_x)"/>
@@ -17,7 +18,15 @@
     <arg name="lidar_z" value="$(arg static_tf_lidar_z)"/>
   </include>
   
-  <!-- <include file="$(find rplidar_ros)/launch/rplidar.launch"/> -->
+  <!-- Drive -->
+  <include file="$(find drive)/launch/slam.launch"/>
+  <!-- Velodyne lidar --> 
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
+  <!-- velodyne tf -->
+  <node pkg="tf" type="static_transform_publisher" name="agv_lidar2velodyne_publisher"
+  	args="0 0 0 0 0 0 agv_lidar velodyne 10" />
+  <!-- joystick -->
+  <node pkg="drive" type="joy2cmd_vel.py" name="joy2cmd_vel"/>
   
   <!-- <include file="$(find launcher)/launch/load_param.launch"/> -->
 </launch>
