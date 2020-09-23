@@ -1,8 +1,0 @@
-CAN:
-  upc: [ 0x73, 0x30130, 0x00241, 0x8 ]
-  serial: 51796
-  bit_rate: 125000
-cart:
-  accelnet:
-    rate: 50
-    rotation_direction: [1, 1, 1, 1]

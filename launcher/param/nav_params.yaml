@@ -1,0 +1,16 @@
+EBandPlannerROS:
+  xy_goal_tolerance: 0.02
+  yaw_goal_tolerance: 0.01
+  max_vel_lin: 1.0
+  max_vel_th: 1.2
+  k_prop: 16.0
+  max_acceleration: 4.0 # s = 0.5*v*v/a
+  virtual_mass: 1.5 # (1.0/virt_mass_) * k_damp * desired_velocity
+  max_translational_acceleration: 1.0
+  max_rotational_acceleration: 1.0
+global_costmap:
+  footprint: &footprint [[-0.2475, -0.365], [-0.2475, 0.365], [0.2475,0.365], [0.2475, -0.365]]
+  footprint_padding: &padding 0.0
+local_costmap:
+  footprint: *footprint
+  footprint_padding: *padding

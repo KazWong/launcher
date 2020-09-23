@@ -1,7 +1,0 @@
-<launch>
-  <include file="$(find boot)/launch/ur5.launch">
-    <arg name="sim" value="true"/>
-    <arg name="ur_ip" value="192.168.3.2"/>
-    <!-- <arg name="joint_pub" value="$(arg joint_pub)"/> -->
-  </include>
-</launch>

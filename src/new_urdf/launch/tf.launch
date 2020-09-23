@@ -1,9 +1,0 @@
-<launch>
-  <!-- Robot TF -->
-  <include file="$(find launcher)/launch/tf_agv.launch">
-    <arg name="sim" value="true"/>
-    <arg name="joint_pub" value="false"/>
-  </include>
-
-  <include file="$(find launcher)/launch/envirTF.launch"/>
-</launch>
