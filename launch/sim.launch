@@ -1,11 +1,26 @@
 <launch>
-  <arg name="map_file" default="$(find environment)/maps/navi_tester.yaml"/>
-  <arg name="amcl_map_file" default="$(find environment)/maps/navi_tester.yaml"/>
+	<!-- BOOT -->
+	<arg name="ns" default=""/>
+  <arg name="sim" default="true"/>
+  <arg name="tf" default="false"/>
+  <arg name="agv" default="false"/>
+  <arg name="navigation" default="true"/>
   
-  <arg name="world_name" default="$(find environment)/worlds/navi_tester.world"/>
-  <arg name="shift_x" default="-3.0"/>
-  <arg name="shift_y" default="-11.75"/>
+  <!-- Maps -->
+  <arg name="map_file" default="$(find environment)/maps/env7.yaml"/>
+  <arg name="amcl_map_file" default="$(find environment)/maps/env7.yaml"/>
+  
+  <!-- Simulation -->
+  <arg name="gazebo" default="false"/>
+  <arg name="world_name" default="$(find environment)/worlds/tri_30deg_5m_5x5.world"/>
+  <arg name="shift_x" default="0.0"/>
+  <arg name="shift_y" default="0.0"/>
+  <arg name="shift_z" default="0.0"/>
   <arg name="gui" default="false"/>
+  <arg name="helloworld_tf" value="false"/>
+  
+  
+  
 
   <!-- Environment TF -->
   <!-- <node pkg="environment" name="static_broadcaster" type="static_broadcaster"></node> -->
@@ -16,26 +31,31 @@
   <!-- AMCL init pose -->
   <rosparam file="$(find launcher)/param/amcl_init.yaml" ns="amcl"/>
   
-  <!-- Gazebo-->
-  <include file="$(find ghost)/launch/helloworld.launch">
+  <!-- Gazebo -->
+  <include if="$(arg gazebo)" file="$(find ghost)/launch/helloworld.launch">
     <arg name="world_name" value="$(arg world_name)"/>
     <arg name="shift_x" value="$(arg shift_x)"/>
     <arg name="shift_y" value="$(arg shift_y)"/>
     <arg name="gui" value="$(arg gui)"/>
-  </include>>
+    <arg name="tf" value="$(arg helloworld_tf)"/>
+  </include>
 
   <!-- Robot -->
   <include file="$(find ghost)/launch/boot.launch">
-    <arg name="sim" value="true"/>
-    <arg name="tf" value="false"/>
-    <arg name="navigation" value="true"/>
-    <arg name="agv" value="false"/>
+  	<arg name="ns" value="$(arg ns)"/>
+    <arg name="sim" value="$(arg sim)"/>
+    <arg name="tf" value="$(arg tf)"/>
+    <arg name="navigation" value="$(arg navigation)"/>
+    <arg name="agv" value="$(arg agv)"/>
     
     <arg name="map_file" value="$(arg map_file)"/>
     <arg name="amcl_map_file" value="$(arg amcl_map_file)"/>
     <arg name="keyboard" value="false"/>
     <arg name="joystick" value="false"/>
     <arg name="joint_pub" value="false"/>
+    <arg name="shift_x" value="$(arg shift_x)"/>
+    <arg name="shift_y" value="$(arg shift_y)"/>
+    <arg name="shift_z" value="$(arg shift_z)"/>
   </include>
   
   <arg name="debug" default="false" />
@@ -49,4 +69,7 @@
   <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
 	args="$(arg command_args)" output="screen">
   </node>
+  
+  <!-- joystick
+  <node pkg="drive" type="joy2cmd_vel.py" name="joy2cmd_vel"/> -->
 </launch>

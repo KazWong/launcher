@@ -1,22 +1,17 @@
 EBandPlannerROS:
   xy_goal_tolerance: 0.25
   yaw_goal_tolerance: 0.087266461
-#  max_vel_lin: 0.6
-  max_vel_lin: 0.8
-  max_vel_th: 0.5
-  k_prop: 14.0
-#  k_prop: 6.0
+  max_vel_lin: 1.0
+  max_vel_th: 1.2
+  k_prop: 16.0
   max_acceleration: 4.0 # s = 0.5*v*v/a
   virtual_mass: 1.5 # (1.0/virt_mass_) * k_damp * desired_velocity
   max_translational_acceleration: 1.0
   max_rotational_acceleration: 1.0
 global_costmap:
-#  footprint: [[-0.25, -0.35], [-0.25, 0.35], [0.25,0.35], [0.40,0], [0.25, -0.35]]
-#  footprint: [[-0.15, -0.25], [-0.15, 0.25], [0.15,0.25], [0.3,0], [0.15, -0.25]]
-#  footprint: [[-0.12, -0.22], [-0.12, 0.22], [0.12,0.22], [0.27,0], [0.12, -0.22]]
-  footprint: [[-0.1, -0.2], [-0.1, 0.2], [0.1,0.2], [0.25,0], [0.1, -0.2]]
+#  footprint: &footprint [[-0.2475, -0.365], [-0.2475, 0.365], [0.2475, 0.365], [0.2475, -0.365]]
+  footprint: &footprint [[-0.1, -0.2], [-0.1, 0.2], [0.1,0.2], [0.25,0], [0.1, -0.2]]
+  footprint_padding: &padding 0.0
 local_costmap:
-#  footprint: [[-0.25, -0.35], [-0.25, 0.35], [0.25,0.35], [0.40,0], [0.25, -0.35]]
-#  footprint: [[-0.15, -0.25], [-0.15, 0.25], [0.15,0.25], [0.3,0], [0.15, -0.25]]
-#  footprint: [[-0.12, -0.22], [-0.12, 0.22], [0.12,0.22], [0.27,0], [0.12, -0.22]]
-  footprint: [[-0.1, -0.2], [-0.1, 0.2], [0.1,0.2], [0.25,0], [0.1, -0.2]]
+  footprint: *footprint
+  footprint_padding: *padding
