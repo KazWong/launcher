@@ -1,75 +1,42 @@
 <launch>
 	<!-- BOOT -->
 	<arg name="ns" default=""/>
-  <arg name="sim" default="true"/>
-  <arg name="tf" default="false"/>
-  <arg name="agv" default="false"/>
-  <arg name="navigation" default="true"/>
-  
-  <!-- Maps -->
-  <arg name="map_file" default="$(find environment)/maps/env7.yaml"/>
-  <arg name="amcl_map_file" default="$(find environment)/maps/env7.yaml"/>
-  
-  <!-- Simulation -->
-  <arg name="gazebo" default="false"/>
-  <arg name="world_name" default="$(find environment)/worlds/tri_30deg_5m_5x5.world"/>
-  <arg name="shift_x" default="0.0"/>
-  <arg name="shift_y" default="0.0"/>
-  <arg name="shift_z" default="0.0"/>
-  <arg name="gui" default="false"/>
-  <arg name="helloworld_tf" value="false"/>
-  
-  
-  
+	<arg name="env_config" default="$(find robot_config)"/>
+	<arg name="robot_config" default="$(find robot_config)"/>
+	<arg name="robot" default="robot"/>
+	<arg name="map" default="env7"/>
+	<arg name="world" default="env7"/>
 
-  <!-- Environment TF -->
-  <!-- <node pkg="environment" name="static_broadcaster" type="static_broadcaster"></node> -->
-  
-  <!-- Robot Parameters-->
-  <!-- robot config -->
-  <rosparam file="$(find launcher)/param/nav_params.yaml" ns="move_base" />
-  <!-- AMCL init pose -->
-  <rosparam file="$(find launcher)/param/amcl_init.yaml" ns="amcl"/>
-  
-  <!-- Gazebo -->
-  <include if="$(arg gazebo)" file="$(find ghost)/launch/helloworld.launch">
-    <arg name="world_name" value="$(arg world_name)"/>
-    <arg name="shift_x" value="$(arg shift_x)"/>
-    <arg name="shift_y" value="$(arg shift_y)"/>
-    <arg name="gui" value="$(arg gui)"/>
-    <arg name="tf" value="$(arg helloworld_tf)"/>
-  </include>
+	<arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+  <arg name="gui" default="true"/>
+	<arg name="joystick" default="true"/>
+
 
   <!-- Robot -->
-  <include file="$(find ghost)/launch/boot.launch">
-  	<arg name="ns" value="$(arg ns)"/>
-    <arg name="sim" value="$(arg sim)"/>
-    <arg name="tf" value="$(arg tf)"/>
-    <arg name="navigation" value="$(arg navigation)"/>
-    <arg name="agv" value="$(arg agv)"/>
-    
-    <arg name="map_file" value="$(arg map_file)"/>
-    <arg name="amcl_map_file" value="$(arg amcl_map_file)"/>
-    <arg name="keyboard" value="false"/>
-    <arg name="joystick" value="false"/>
-    <arg name="joint_pub" value="false"/>
-    <arg name="shift_x" value="$(arg shift_x)"/>
-    <arg name="shift_y" value="$(arg shift_y)"/>
-    <arg name="shift_z" value="$(arg shift_z)"/>
+	<include file="$(find launcher)/launch/simworld.launch">
+		<arg name="config" value="$(arg env_config)"/>
+  	<arg name="world" value="$(arg world)"/>
+		<arg name="gui" value="$(arg gui)"/>
   </include>
-  
-  <arg name="debug" default="false" />
-  <arg unless="$(arg debug)" name="launch_prefix" value="" />
-  <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
 
-  <arg name="config" default="true" />
-  <arg unless="$(arg config)" name="command_args" value="" />
-  <arg     if="$(arg config)" name="command_args" value="-d $(find launcher)/launch/rv.rviz" />
-  
-  <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
-	args="$(arg command_args)" output="screen">
-  </node>
-  
-  <!-- joystick
-  <node pkg="drive" type="joy2cmd_vel.py" name="joy2cmd_vel"/> -->
+	<include file="$(find launcher)/launch/simspawn.launch">
+		<arg name="ns" value="$(arg ns)"/>
+		<arg name="config" value="$(arg robot_config)"/>
+
+		<arg name="robot" value="$(arg robot)"/>
+    <arg name="x" value="$(arg x)"/>
+    <arg name="y" value="$(arg y)"/>
+    <arg name="z" value="$(arg z)"/>
+  </include>
+
+  <include file="$(find launcher)/launch/simnav.launch">
+		<arg name="ns" value="$(arg ns)"/>
+		<arg name="config" value="$(arg robot_config)"/>
+		<arg name="map_config" value="$(arg env_config)"/>
+		<arg name="map" value="$(arg map)"/>
+		<arg name="joystick" value="$(arg joystick)"/>
+		<arg name="rviz" value="$(arg gui)"/>
+  </include>
 </launch>

@@ -1,0 +1,25 @@
+<launch>
+  <arg name="ns" default=""/>
+  <arg name="robot" default="robot"/>
+	<arg name="config" default="$(find robot_config)"/>
+
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+
+  <!-- robot param -->
+  <rosparam file="$(arg config)/urdf/$(arg robot).yaml" ns="move_base"/>
+
+  <!-- Spawn TF -->
+  <include file="$(find ghost)/launch/boot.launch">
+    <arg name="ns" value="$(arg ns)"/>
+		<arg name="config" value="$(arg config)"/>
+    <arg name="sim" value="true"/>
+    <arg name="tf" value="true"/>
+
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="shift_x" value="$(arg x)"/>
+    <arg name="shift_y" value="$(arg y)"/>
+    <arg name="shift_z" value="$(arg z)"/>
+  </include>
+</launch>
