@@ -1,7 +1,7 @@
 <launch>
   <arg name="ns" default=""/>
-  <arg name="robot" default="robot"/>
-	<arg name="config" default="$(find robot_config)"/>
+  <arg name="robot" />
+  <arg name="config" />
 
   <arg name="x" default="0.0"/>
   <arg name="y" default="0.0"/>

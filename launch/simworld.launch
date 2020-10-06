@@ -1,7 +1,7 @@
 <launch>
   <arg name="ns" default=""/>
-  <arg name="config" default="$(find robot_config)"/>
-  <arg name="world" default="env7"/>
+  <arg name="config" />
+  <arg name="world" />
   <arg name="gui" default="true"/>
 
   <!-- World -->
