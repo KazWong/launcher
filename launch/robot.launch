@@ -2,7 +2,8 @@
   <!-- BOOT -->
   <arg name="ns" default=""/>
   <arg name="robot" default="robot"/>
-  <arg name="config" default="$(find robot_config)"/>
+  <arg name="config"/>
+  <arg name="param_config"/>
   <arg name="map_name" default="env7"/>
 
 
@@ -11,32 +12,44 @@
   <arg name="map_file" default="$(arg config)/maps/$(arg map_name).yaml"/>
   <arg name="amcl_map_file" default="$(arg config)/maps/$(arg map_name).yaml"/>
   <!-- robot config -->
-  <rosparam file="$(arg config)/urdf/robo_config.yaml" ns="move_base" />
+  <rosparam file="$(arg config)/urdf/$(arg robot).yaml" ns="move_base" /> 
 
 
   <include file="$(find ghost)/launch/boot.launch">
-		<arg name="config" value="$(arg config)"/>
-    <arg name="tf" value="true"/>
+    <arg name="config" value="$(arg param_config)"/>
+    <arg name="sim" value="false"/>
+    <arg name="tf" value="false"/>
     <arg name="navigation" value="true"/>
     <arg name="agv" value="true"/>
 
     <arg name="map_file" value="$(arg map_file)"/>
     <arg name="amcl_map_file" value="$(arg amcl_map_file)"/>
-    <arg name="joystick" value="true"/>
+    <arg name="joystick" value="false"/>
     <arg name="robot" value="$(arg robot)"/>
 
     <arg name="duration" value="5m"/>
     <arg name="split" value="100"/>
+  </include>
+  
+  <include file="$(find ghost)/launch/boot.launch">
+    <arg name="config" value="$(arg config)"/>
+    <arg name="sim" value="false"/>
+    <arg name="tf" value="true"/>
+  
+    <arg name="robot" value="$(arg robot)"/>
   </include>
 
 
   <!-- Drive -->
   <include file="$(find drive)/launch/slam.launch"/>
   <!-- Velodyne lidar -->
-  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch"/>
+  <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch">
+    <arg name="device_ip" default="192.168.1.201" />
+  </include>
   <!-- velodyne tf -->
   <node pkg="tf" type="static_transform_publisher" name="agv_lidar2velodyne_publisher"
   	args="0 0 0 0 0 0 agv_lidar velodyne 10"/>
   <!-- data transformer -->
   <node pkg="data_transformer" type="data_transformer2" name="data_transformer2"/>
+  <!-- <node pkg="data_transformer" type="data_transformer3" name="data_transformer3"/> -->
 </launch>
