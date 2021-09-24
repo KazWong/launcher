@@ -1,0 +1,61 @@
+<launch>
+  <!-- BOOT -->
+  <arg name="ns" default=""/>
+  <arg name="robot" default="robot"/>
+  <arg name="param" default="eband_1"/>
+  <arg name="world" />
+
+  <arg name="use_nav" default="true"/>
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+  <arg name="gui" default="false"/>
+  <arg name="joystick" default="false"/>
+  <arg name="use_joint_pub" default="false"/>
+
+  <arg name="rviz" default="false"/>
+  <arg name="rviz_config" default="false"/>
+  <arg name="rviz_debug" default="false"/>
+
+  <!-- Robot -->
+  <include file="$(find launcher)/launch/gazeboworld.launch">
+    <arg name="world" value="$(arg world)"/>
+    <arg name="gui" value="$(arg gui)"/>
+  </include>
+
+  <include file="$(find launcher)/launch/gazebospawn.launch">
+    <arg name="ns" value="$(arg ns)"/>
+
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="use_joint_pub" value="$(arg use_joint_pub)"/>
+    <arg name="x" value="$(arg x)"/>
+    <arg name="y" value="$(arg y)"/>
+    <arg name="z" value="$(arg z)"/>
+  </include>
+
+  <include if="$(arg use_nav)" file="$(find launcher)/launch/simnav.launch">
+    <arg name="ns" value="$(arg ns)"/>
+    <arg name="param" value="$(arg param)"/>
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="map" value="$(arg world)"/>
+  </include>
+
+  <include file="$(find ghost)/launch/boot.launch">
+    <arg name="ns" value="$(arg ns)"/>
+    <arg name="param" value="$(arg param)"/>
+
+    <arg name="manual" value="true"/>
+    <arg name="joystick" value="$(arg joystick)"/>
+  </include>
+
+  <!-- rviz -->
+  <arg unless="$(arg rviz_debug)" name="launch_prefix" value=""/>
+  <arg     if="$(arg rviz_debug)" name="launch_prefix" value="gdb --ex run --args"/>
+
+  <arg unless="$(arg rviz_config)" name="command_args" value=""/>
+  <arg     if="$(arg rviz_config)" name="command_args" value="-d $(arg config)/rv.rviz"/>
+
+  <node if="$(arg rviz)" name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
+	args="$(arg command_args)" output="screen">
+  </node>
+</launch>

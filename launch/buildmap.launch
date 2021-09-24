@@ -2,33 +2,21 @@
   <!-- BOOT -->
   <arg name="ns" default=""/>
   <arg name="robot" default="robot"/>
-  <arg name="config"/>
-  <arg name="param_config"/>
-
-  <!-- Robot Parameters-->
-  <!-- robot config -->
-  <rosparam file="$(arg config)/urdf/$(arg robot).yaml" ns="move_base" />
-
+  <arg name="param" default="eband_1"/>
 
   <include file="$(find ghost)/launch/boot.launch">
-    <arg name="config" value="$(arg param_config)"/>
-    <arg name="tf" value="false"/>
-    <arg name="agv" value="true"/>
-    <arg name="navigation" value="true"/>
-
-    <arg name="slam" default="false"/>
-    <arg name="gmapping" default="true"/>
-
-    <arg name="joystick" value="false"/>
-    <arg name="robot" value="$(arg robot)"/>
-  </include>
-
-  <include file="$(find ghost)/launch/boot.launch">
-    <arg name="config" value="$(arg config)"/>
-    <arg name="sim" value="false"/>
+  	<arg name="ns" value="$(arg ns)"/>
+  	<arg name="param" value="$(arg param)"/>
+  	
     <arg name="tf" value="true"/>
-
     <arg name="robot" value="$(arg robot)"/>
+    
+    <arg name="navigation" value="true"/>
+    <arg name="use_amcl" default="false"/>
+    <arg name="use_gmapping" default="true"/>
+    
+    <arg name="manual" value="false"/>
+    <arg name="joystick" value="false"/>
   </include>
 
   <!-- Drive -->

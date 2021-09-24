@@ -1,0 +1,38 @@
+<launch>
+  <arg name="ns" default=""/>
+  <arg name="robot" default="robot"/>
+  <arg name="use_joint_pub" default="false"/>
+
+  <arg name="x" default="0.0"/>
+  <arg name="y" default="0.0"/>
+  <arg name="z" default="0.0"/>
+
+  <!-- Parsing xacro and setting robot_description parameter -->
+  <param name="robot_description_gazebo"
+         command="$(find xacro)/xacro '$(find config_robot)/urdf/$(arg robot).gazebo.xacro'" />
+
+
+  <!-- Phase TF -->
+  <include file="$(find ghost)/launch/boot.launch">
+    <arg name="ns" value="$(arg ns)"/>
+
+    <arg name="tf" value="true"/>
+    <arg name="robot" value="$(arg robot)"/>
+    <arg name="joint_pub" value="false"/>
+    <arg name="shift_x" value="$(arg x)"/>
+    <arg name="shift_y" value="$(arg y)"/>
+    <arg name="shift_z" value="$(arg z)"/>
+  </include>
+
+  <!-- Publish joint state -->
+  <node if="$(arg use_joint_pub)" name="joint_state_publisher" pkg="joint_state_publisher"
+        type="joint_state_publisher">
+    <param name="use_gui" value="false"/>
+    <param name="rate" value="10"/>
+  </node>
+
+  <!-- Spawn robot in gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false"
+        output="screen" args="-urdf -model robo -param robot_description_gazebo
+        -x $(arg x) -y $(arg y) -z $(arg z) " launch-prefix="bash -c 'sleep 5.0; $0 $@'"/>
+</launch>
