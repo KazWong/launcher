@@ -35,4 +35,6 @@
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false"
         output="screen" args="-urdf -model robo -param robot_description_gazebo
         -x $(arg x) -y $(arg y) -z $(arg z) " launch-prefix="bash -c 'sleep 5.0; $0 $@'"/>
+  
+  <node name="joy2cmd_vel" pkg="ghost" type="joy2cmd_vel.py" />
 </launch>
